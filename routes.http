@@ -1,0 +1,7 @@
+# post request: send name
+POST http://localhost:8080/primeiraController/metodoComBodyParams
+Content-Type: application/json
+
+{
+  "username": "Marcel"
+}
