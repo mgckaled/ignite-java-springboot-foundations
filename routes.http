@@ -21,3 +21,6 @@ Content-Type: application/json
 name: Marcel (Header)
 username: mgckdev
 Authorization: 232323232323232323
+
+### Get request: get username by id
+GET http://localhost:8080/primeiraController/metodoResponseEntity/6

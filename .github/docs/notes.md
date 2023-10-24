@@ -7,6 +7,7 @@
   - [Dicas](#dicas)
     - [Como executar projetos Java com Maven e Spring Boot?](#como-executar-projetos-java-com-maven-e-spring-boot)
     - [Para que serve o `@ComponentScan`?](#para-que-serve-o-componentscan)
+    - [`ResponseEntity`](#responseentity)
   - [Conceitos](#conceitos)
     - [O que é Spring Boot?](#o-que-é-spring-boot)
     - [O que é Maven?](#o-que-é-maven)
@@ -73,6 +74,63 @@ public class MinhaAplicacao {
 Neste exemplo, o `@ComponentScan` está configurado para examinar o pacote "com.exemplo" e seus subpacotes em busca de componentes Spring. Ele irá registrar todos os componentes encontrados no contexto da aplicação.
 
 Em resumo, o `@ComponentScan` no Spring Boot é uma anotação útil para configurar a varredura automática de componentes da aplicação, tornando o desenvolvimento mais fácil e eficiente, especialmente em aplicativos grandes e complexos.
+
+### `ResponseEntity`
+
+`ResponseEntity` é uma classe da estrutura Spring Boot que permite que você controle a resposta HTTP retornada por um controlador ou método de serviço. Ela é muito útil quando você precisa ter controle completo sobre o código de status, cabeçalhos e corpo da resposta. Aqui estão algumas maneiras comuns de lidar com `ResponseEntity` no Spring Boot:
+
+1. **Retornando ResponseEntity de um Método do Controlador:**
+
+   No seu controlador, você pode retornar um `ResponseEntity` em vez de um objeto simples. Isso lhe dá controle total sobre a resposta HTTP. Por exemplo:
+
+   ```java
+   @GetMapping("/exemplo")
+   public ResponseEntity<String> exemplo() {
+       String mensagem = "Exemplo de ResponseEntity no Spring Boot";
+       HttpHeaders headers = new HttpHeaders();
+       headers.add("Custom-Header", "Valor-Custom");
+       return new ResponseEntity<>(mensagem, headers, HttpStatus.OK);
+   }
+   ```
+
+   Neste exemplo, estamos retornando um `ResponseEntity` com uma mensagem, cabeçalhos personalizados e um código de status OK (200).
+
+2. **Manipulando Códigos de Status e Cabeçalhos:**
+
+   Você pode definir o código de status e os cabeçalhos do `ResponseEntity` conforme necessário. Por exemplo:
+
+   ```java
+   ResponseEntity<String> responseEntity = new ResponseEntity<>("Mensagem de erro", HttpStatus.BAD_REQUEST);
+   HttpHeaders headers = new HttpHeaders();
+   headers.add("Custom-Header", "Valor-Custom");
+   responseEntity = responseEntity.headers(headers);
+   ```
+
+3. **Lidando com Respostas Personalizadas:**
+
+   Às vezes, você pode precisar de respostas personalizadas, como erros personalizados. Você pode criar uma classe personalizada para representar essas respostas e retornar um `ResponseEntity` correspondente:
+
+   ```java
+   @ExceptionHandler(MinhaExcecaoPersonalizada.class)
+   public ResponseEntity<ErroPersonalizado> handleMinhaExcecao(MinhaExcecaoPersonalizada ex) {
+       ErroPersonalizado erro = new ErroPersonalizado(ex.getMessage());
+       return new ResponseEntity<>(erro, HttpStatus.INTERNAL_SERVER_ERROR);
+   }
+   ```
+
+   Neste exemplo, um controlador de exceção é usado para lidar com uma exceção personalizada e retornar um `ResponseEntity` com um objeto de erro personalizado e um código de status personalizado.
+
+4. **Usando ResponseEntity com Tipos Genéricos:**
+
+   Você pode usar `ResponseEntity` com tipos genéricos para serializar e deserializar automaticamente objetos Java em JSON, XML, etc.:
+
+   ```java
+   ResponseEntity<List<Produto>> responseEntity = new ResponseEntity<>(listaDeProdutos, HttpStatus.OK);
+   ```
+
+   Neste exemplo, estamos retornando uma lista de objetos `Produto` como JSON com um código de status OK.
+
+Em resumo, `ResponseEntity` no Spring Boot oferece flexibilidade e controle sobre as respostas HTTP retornadas pelos seus controladores. Você pode personalizar o código de status, os cabeçalhos e o corpo da resposta de acordo com suas necessidades.
 
 ## Conceitos
 
