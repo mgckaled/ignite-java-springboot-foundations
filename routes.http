@@ -1,7 +1,23 @@
-# post request: send name
+# post request: send name as param
 POST http://localhost:8080/primeiraController/metodoComBodyParams
 Content-Type: application/json
 
 {
   "username": "Marcel"
 }
+
+###
+
+# Post request: send with headers
+POST http://localhost:8080/primeiraController/metodoComHeaders
+Content-Type: application/json
+name: Marcel (Header)
+
+### 
+
+# Post request: send with headers
+POST http://localhost:8080/primeiraController/metodoComListHeaders
+Content-Type: application/json
+name: Marcel (Header)
+username: mgckdev
+Authorization: 232323232323232323
