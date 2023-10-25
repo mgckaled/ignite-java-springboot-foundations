@@ -8,10 +8,12 @@
     - [Como executar projetos Java com Maven e Spring Boot?](#como-executar-projetos-java-com-maven-e-spring-boot)
     - [Para que serve o `@ComponentScan`?](#para-que-serve-o-componentscan)
     - [`ResponseEntity`](#responseentity)
+    - [Como utilziar a anotação `@Autowired`?](#como-utilziar-a-anotação-autowired)
   - [Conceitos](#conceitos)
     - [O que é Spring Boot?](#o-que-é-spring-boot)
     - [O que é Maven?](#o-que-é-maven)
     - [O que é API REST?](#o-que-é-api-rest)
+    - [O que é Inversão de Controle (IOC)?](#o-que-é-inversão-de-controle-ioc)
 
 ## Dicas
 
@@ -131,6 +133,39 @@ Em resumo, o `@ComponentScan` no Spring Boot é uma anotação útil para config
    Neste exemplo, estamos retornando uma lista de objetos `Produto` como JSON com um código de status OK.
 
 Em resumo, `ResponseEntity` no Spring Boot oferece flexibilidade e controle sobre as respostas HTTP retornadas pelos seus controladores. Você pode personalizar o código de status, os cabeçalhos e o corpo da resposta de acordo com suas necessidades.
+
+### Como utilziar a anotação `@Autowired`?
+
+A anotação `@Autowired` é usada no contexto do Spring Framework (incluindo o Spring Boot) para realizar a injeção de dependência automática. Sua função é simples: ela permite que você injete automaticamente beans (componentes gerenciados pelo Spring) em outros beans, sem a necessidade de criar instâncias manualmente. Isso facilita a configuração e o gerenciamento de dependências em uma aplicação Spring.
+
+Aqui estão algumas funcionalidades-chave do `@Autowired`:
+
+1. **Injeção de Dependência Automática:** Quando você anota um campo, construtor, método setter ou método de configuração com `@Autowired`, o Spring Framework identificará automaticamente o bean apropriado e o injetará no local anotado.
+
+2. **Resolução de Dependência por Tipo:** O Spring tentará encontrar uma instância do tipo necessário a ser injetado. Se houver apenas uma correspondência, ela será injetada automaticamente. Se houver múltiplas correspondências, você precisará especificar qual delas deve ser injetada com mais precisão usando outras anotações, como `@Qualifier`.
+
+3. **Redução da Configuração Manual:** O uso do `@Autowired` reduz a necessidade de configuração manual de dependências no arquivo de configuração do Spring (geralmente um arquivo XML). Em vez disso, as dependências são gerenciadas por meio de anotações e configurações em classes Java.
+
+Aqui está um exemplo de uso do `@Autowired` em uma classe de serviço Spring:
+
+```java
+@Service
+public class MinhaClasseServico {
+
+    private MinhaOutraClasseDependencia dependencia;
+
+    @Autowired
+    public MinhaClasseServico(MinhaOutraClasseDependencia dependencia) {
+        this.dependencia = dependencia;
+    }
+
+    // ...
+}
+```
+
+Neste exemplo, a classe `MinhaClasseServico` tem uma dependência da classe `MinhaOutraClasseDependencia`, e a injeção de dependência é realizada automaticamente no construtor da classe de serviço.
+
+Em resumo, o `@Autowired` é uma anotação fundamental do Spring que torna a injeção de dependência mais conveniente e eficaz. Ela ajuda a criar um acoplamento mais fraco entre os componentes da sua aplicação e facilita o desenvolvimento de aplicações mais testáveis e flexíveis.
 
 ## Conceitos
 
@@ -262,3 +297,21 @@ Agora, como você pode criar uma API REST em Java com Spring Boot:
 7. **Teste sua API**: É importante criar testes unitários e testes de integração para garantir o funcionamento correto da sua API.
 
 Em resumo, uma API RESTful é uma maneira de projetar serviços web que seguem princípios simples e padronizados, tornando-os fáceis de usar e entender. O Spring Boot facilita a criação de APIs REST em Java, fornecendo um conjunto de ferramentas e recursos para simplificar o desenvolvimento.
+
+### O que é Inversão de Controle (IOC)?
+
+A Inversão de Controle (IoC) é um princípio de design de software e um conceito-chave na arquitetura de sistemas, onde a responsabilidade de controlar a execução de um programa é transferida de um componente para outro. Em vez de um componente controlar diretamente a criação e a gestão de suas dependências, a IoC inverte essa responsabilidade, permitindo que um componente seja "injetado" com suas dependências por um componente externo.
+
+A IoC é frequentemente associada ao Framework Spring (incluindo o Spring Boot) e a outros contêineres de injeção de dependência. Aqui estão alguns conceitos importantes relacionados à IoC:
+
+1. **Contêiner de Injeção de Dependência (DI Container):** O contêiner de IoC é responsável por gerenciar a criação, configuração e fornecimento de objetos (ou beans) em uma aplicação. Ele mantém um registro de todas as dependências e injeta-as nos componentes apropriados quando necessário.
+
+2. **Injeção de Dependência (DI):** A IoC é frequentemente usada em conjunto com a injeção de dependência. A injeção de dependência é o ato de fornecer as dependências de um componente (como serviços ou objetos) a ele, em vez de permitir que o componente as crie ou gerencie. Isso ajuda a alcançar o baixo acoplamento entre componentes e a reutilização de código.
+
+3. **Controle Direto vs. Controle Invertido:** No modelo tradicional, o controle direto é quando um componente é responsável por criar e gerenciar suas próprias dependências. No modelo IoC, o controle é invertido, com um contêiner ou componente externo injetando as dependências nos componentes que precisam delas. Isso permite uma maior flexibilidade e facilita a manutenção e o teste de componentes individuais.
+
+4. **Benefícios da IoC:** A IoC promove a modularidade, reutilização de código, testabilidade e flexibilidade no desenvolvimento de software. Ela simplifica a configuração e a gestão de dependências e ajuda a reduzir o acoplamento entre componentes.
+
+5. **Exemplos de Frameworks IoC:** Além do Spring Framework, outros exemplos de frameworks IoC incluem o Google Guice, CDI (Contexts and Dependency Injection), e frameworks de IoC específicos da linguagem, como o AngularJS no contexto do JavaScript.
+
+Em resumo, a Inversão de Controle (IoC) é um princípio de design que promove a transferência do controle da criação e gestão de dependências de um componente para outro. Isso leva a um código mais modular, flexível e facilmente testável, e é amplamente usado na construção de sistemas modernos, especialmente em estruturas e contêineres de injeção de dependência.
