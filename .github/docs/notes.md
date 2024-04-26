@@ -14,6 +14,7 @@
     - [O que é Maven?](#o-que-é-maven)
     - [O que é API REST?](#o-que-é-api-rest)
     - [O que é Inversão de Controle (IOC)?](#o-que-é-inversão-de-controle-ioc)
+  - [Quiz](#quiz)
 
 ## Dicas
 
@@ -315,3 +316,21 @@ A IoC é frequentemente associada ao Framework Spring (incluindo o Spring Boot) 
 5. **Exemplos de Frameworks IoC:** Além do Spring Framework, outros exemplos de frameworks IoC incluem o Google Guice, CDI (Contexts and Dependency Injection), e frameworks de IoC específicos da linguagem, como o AngularJS no contexto do JavaScript.
 
 Em resumo, a Inversão de Controle (IoC) é um princípio de design que promove a transferência do controle da criação e gestão de dependências de um componente para outro. Isso leva a um código mais modular, flexível e facilmente testável, e é amplamente usado na construção de sistemas modernos, especialmente em estruturas e contêineres de injeção de dependência.
+
+## Quiz
+
+1 - *Qual é o propósito principal do Spring Boot?* **Resposta:** Spring Boot é um framework para o desenvolvimento de aplicações Java que facilita e agiliza o desenvolvimento de aplicativos da web e de microsserviços.
+
+2 - *O que são dependências em um projeto de software?* **Resposta:** Bibliotecas de código, módulos ou componentes que o projeto utiliza para adicionar funcionalidades específicas.
+
+3 - *Qual é a principal finalidade do módulo Spring Web em um aplicativo Spring?* **Resposta:** Desenvolvimento de aplicativos web e manipulação HTTP.
+
+4 - *Qual é a função principal do arquivo pom.xml em um projeto Java utilizando o Maven?* **Resposta:** Especificar as dependências do projeto e as configurações de compilação.
+
+5- *O que melhor descreve as annotations (anotações) em Java?* **Resposta:** Marcações especiais que fornecem informações sobre o código, podendo influenciar o comportamento em tempo de compilação e execução.
+
+6 - *O que a Injeção de Dependência (DI) faz em um contexto de desenvolvimento de software?* **Resposta:** A DI é uma prática que permite que objetos recebam suas dependências de fontes externas, sem criá-las internamente.
+
+7 - *O que melhor descreve a função da anotação `@Autowired` em Java* **Resposta:** Especifica que um campo ou método `setter` deve ser injetado automaticamente pelo Spring.
+
+8 - *Qual das seguintes opções melhor descreve a diferença entre body params, path params, query params e header params em uma API REST?* **Resposta:** *Body Params*: Contêm informações no corpo da requisição, geralmente usados em métodos POST. *Path Params*: São utilizados para incluir parâmetros diretamente na URL. *Query Params*: São parâmetros opcionais anexados à URL. *Header Params*: São parâmetros que fornecem informações adicionais na requisição, como autenticação.
